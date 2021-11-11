@@ -1,0 +1,29 @@
+---
+- name: Create app container
+  docker_container:
+    name: "{{application_name}}-app"
+    image: "{{application_name}}:latest"
+    restart_policy: "always"
+    memory: "10MB"
+    log_driver: "awslogs"
+    log_options:
+        awslogs-region: "{{cloudwatch_region}}"
+        awslogs-group: "{{cloudwatch_log_group}}"
+        awslogs-stream: "{{ database_container_name }}"
+    exposed_ports:
+      - "80"
+    volumes:
+        - "{{ hostvars[inventory_hostname].working_directory }}haproxy:/usr/local/etc/haproxy"
+    env:
+      VIRTUAL_HOST: "{{ domain_names }}"
+      LETSENCRYPT_HOST: "{{ domain_names }}"
+      VIRTUAL_PORT: "80"
+
+- name: Copy haproxy config
+  template:
+    src: ../templates/haproxy.j2
+    dest: "{{ hostvars[inventory_hostname].working_directory }}/haproxy/haproxy.cfg"
+    owner: ubuntu
+    group: ubuntu
+    mode: '0644'
+
