@@ -9,7 +9,7 @@
     log_options:
         awslogs-region: "{{cloudwatch_region}}"
         awslogs-group: "{{cloudwatch_log_group}}"
-        awslogs-stream: "{{ database_container_name }}"
+        awslogs-stream: "{{ application_name }}"
     exposed_ports:
       - "80"
     volumes:
