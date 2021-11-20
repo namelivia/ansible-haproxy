@@ -1,4 +1,4 @@
-# Haproxy Ansible role
+# Haproxy Ansible role [![Ansible Lint](https://github.com/namelivia/ansible-haproxy/actions/workflows/ansible-lint.yml/badge.svg)](https://github.com/namelivia/ansible-haproxy/actions/workflows/ansible-lint.yml)
 
 ## This is a WIP
 

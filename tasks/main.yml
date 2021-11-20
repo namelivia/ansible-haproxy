@@ -30,7 +30,7 @@
 
 - name: Copy haproxy config
   template:
-    src: ../templates/haproxy.j2
+    src: haproxy.j2
     dest: "{{ hostvars[inventory_hostname].working_directory }}/haproxy/haproxy.cfg"
     owner: ubuntu
     group: ubuntu
